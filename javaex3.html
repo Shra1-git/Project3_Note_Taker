@@ -1,0 +1,97 @@
+<html>
+    <head>
+        <title> Note Taker</title> 
+        <link rel="stylesheet" href="jsex3.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!--     text-overflow:ellipsis;overflow:hidden;display: -webkit-box !important;-webkit-line-clamp: 2;-webkit-box-orient: vertical;white-space: normal;
+}
+        </style>  -->
+        <script>
+            a=1;
+            function process(){
+                modal= document.getElementById("mymodal");
+                spanclose = document.getElementsByClassName("close")[0];
+                mypara = document.getElementById("mypara");
+                mytext=document.getElementById("mytext").value;
+
+                if(mytext==""){
+                    alert("Enter something!!you a**hole");
+                    return null;
+                }
+                if(a%2!=0){
+                    leftside(mytext);
+                }
+                else{
+                    rightside(mytext);
+                }
+                function leftside(mytext){
+
+                    allcontent =  document.getElementById("leftside");
+                    noteblock= document.createElement("div");
+                    detailbtn = document.createElement("button");
+                    detailbtn.innerText = "View Detail";
+                    noteblock.style="border: 1px solid black;margin: 2px 2px 2px 2px;padding: 10px 10px 10px 10px;text-overflow:ellipsis;overflow:hidden;";
+                    noteblock.innerHTML="<h3> Note " + a + "</h3>" + mytext + "<br>";
+                    noteblock.appendChild(detailbtn);
+                    allcontent.appendChild(noteblock);
+                    detailbtn.onclick = function() {
+                          //alert("clicked");
+                          mypara.innerHTML = mytext;
+                          modal.style.display="block";
+                    }
+                    
+ 
+                }
+                 
+                function rightside(mytext){
+                    allcontent =  document.getElementById("rightside");
+                    noteblock= document.createElement("div");
+                    detailbtn = document.createElement("button");
+                    detailbtn.innerText = "View Detail";
+                    noteblock.style="border: 1px solid black;margin: 2px 2px 2px 2px;padding: 10px 10px 10px 10px;text-overflow:ellipsis;overflow:hidden;";
+                    noteblock.innerHTML="<h3> Note " + a + "</h3>" + mytext + "<br>";
+                    noteblock.appendChild(detailbtn);
+                    allcontent.appendChild(noteblock);
+                    /*detailbtn.onclick = function() {
+                    mypara.append(mytext);
+                        modal.style.display="block";
+                    }
+                    spanclose.onclick = function() {
+                        modal.style.display="none";
+                    } */
+                    
+                }
+                
+                a++;
+                spanclose.onclick = function() {
+                        modal.style.display="none";
+                    }
+            }
+
+
+        </script>
+    </head>
+    <body>
+        <center> <h1> Note Taker</h1></center>
+        <center><h3> Add a new Note:</h3></center><br>
+        <form>
+            <div style="margin: 30px 150px 30px 150px; font-size:20px"> Note: 
+            <input type="textarea" style="height:50px ;width: 1000px " id="mytext"><br><br>
+            <center><input type="button" id="myButton" value="Add Button" onclick="process(); reset()" ></center>
+            </div><br>
+        </form>
+        <div style="margin: 30px 150px 30px 150px;">
+            <div id="leftside" style="width: 47%;float: left;padding: 15px"></div>
+            <div id="rightside"  style="width: 47%;float: right;padding: 15px"></div>
+        </div>
+        <div id="mymodal" class="modal">
+            <div class="modalcontent">
+                <span class="close">&times;</span>
+               <p id="mypara"></p>
+               
+            </div>
+        </div>
+        
+    </body>
+</html>
